@@ -35,7 +35,7 @@ module.exports.CreerStation = async (req, res) => {
 		.catch((error) => res.status(400).json({ error }));
 };
 module.exports.GetAllStations = async (req, res) => {
-	const station = await Station.find();
+	const station = await Station.find().populate('Factures').populate('FileAttenteE').populate('FileAttenteG').populate('FileAttenteGZZ');
 	res.status(200).json(station);
 };
 module.exports.GetStation = (req, res) => {
@@ -46,7 +46,7 @@ module.exports.GetStation = (req, res) => {
 			console.log("on a trouver !! " + docs.id_User);
 			res.status(200).json(docs);
 		} else console.log(" on a un souci : " + err);
-	}).select("-mdp");
+	}).select("-mdp").populate('Factures').populate('FileAttenteE').populate('FileAttenteG').populate('FileAttenteGZZ');
 };
 module.exports.ModifierNomStation = async (req, res) => {
 	try {

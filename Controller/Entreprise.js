@@ -52,7 +52,7 @@ module.exports.SupprimerEntreprise = async (req, res) => {
 	}
 };
 module.exports.GetAllEntreprise = async (req, res) => {
-    const users = await Entreprise.find().select('-mdp');
+    const users = await Entreprise.find().select('-mdp').populate('Chauffeur')
     res.status(200).json(users);
 };
 module.exports.GetEntreprise = (req, res) => {
@@ -93,5 +93,5 @@ module.exports.GetCompteEntreprise = (req, res) => {
 			console.log("on a trouver !! " + docs.id_User);
 			res.status(200).json(docs.Compte);
 		} else console.log(" on a un souci : " + err);
-	}).select("-mdp");
+	}).select("-mdp").populate('Chauffeur')
 };

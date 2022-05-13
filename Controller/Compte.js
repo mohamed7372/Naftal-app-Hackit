@@ -501,7 +501,7 @@ module.exports.GetCompte = (req, res) => {
 			console.log("on a trouver !! " + docs.id_User);
 			res.status(200).json(docs);
 		} else console.log(" on a un souci : " + err);
-	}).select("-mdp");
+	}).select("-mdp").populate('Vehicules').populate('Reservations').populate('Factures');
 };
 module.exports.GetCompteUser = (req, res) => {
 	const token = req.cookies.jwt;
@@ -517,7 +517,7 @@ module.exports.GetCompteUser = (req, res) => {
 				Utilisateur.findById(decodedToken.userId, (err, docs) => {
 					if (!err) res.status(200).json(docs);
 					else console.log(" on a un souci : " + err);
-				}).select("-mdp");
+				}).select("-mdp").populate('Vehicules').populate('Reservations').populate('Factures');
 			}
 		});
 	} else {
@@ -527,8 +527,8 @@ module.exports.GetCompteUser = (req, res) => {
 	}
 };
 module.exports.GetAllUsers = async (req, res) => {
-	const users = await Utilisateur.find().select("-mdp");
-	res.status(200).json(users);
+	const users = await Utilisateur.find().select("-mdp").populate('Vehicules').populate('Reservations').populate('Factures');
+	res.status(200).json(users)
 };
 module.exports.GetAllVehicules = async (req, res) => {
 	const users = await Vehicule.find();

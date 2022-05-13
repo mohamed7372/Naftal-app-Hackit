@@ -144,7 +144,7 @@ module.exports.CreerFacture = async (req, res) => {
 	}).select("-mdp");
 };
 module.exports.GetAllFactures = async (req, res) => {
-	const Fac = await Factures.find();
+	const Fac = await Factures.find().populate('User');
 	res.status(200).json(Fac);
 };
 module.exports.GetFacture = (req, res) => {

@@ -67,7 +67,7 @@ module.exports.GetReservation = (req, res) => {
 				res.status(200).json(docs);
 			} else console.log(" on a un souci : " + err);
 		}
-	);
+	).populate('Station').populate('User');
 };
 module.exports.SupprimerReservation = async (req, res) => {
 	try {
