@@ -1,5 +1,6 @@
 // les declarations 
 const express = require('express');
+const blockchain= require("./Controller/BlockChain");
 const bodyparser = require('body-parser');
 const cookieparser =  require('cookie-parser');
 const cors = require('cors');
@@ -29,6 +30,21 @@ app.use(bodyparser.json());
 app.use(cookieparser()); +
 app.use(bodyparser.urlencoded({extended: true}));
 
+app.get('/blocks', (req, res) => res.send(JSON.stringify(block)));
+    app.post('/mineBlock', (req, res) => {
+        var newBlock = blockchain.generateNextBlock(req.body.data);
+        blockchain.addBlock(newBlock);
+        blockchain.broadcast(responseLatestMsg());
+        console.log('block ajouté : ' + JSON.stringify(newBlock));
+        res.send();
+    });
+    app.get('/peers', (req, res) => {
+        res.send(sockets.map(s => s._socket.remoteAddress + ':' + s._socket.remotePort));
+    });
+    app.post('/addPeer', (req, res) => {
+        blockchain.connectToPeers([req.body.peer]);
+        res.send();
+    });
 
 app.use('/Utilisateur', userRoutes)
 

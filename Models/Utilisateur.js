@@ -47,6 +47,9 @@ const Utilisateur = new mongoose.Schema({
 	Reservations: {
 		type: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
 	},
+	Points:{
+		type:String,
+	}
 });
 
 module.exports = mongoose.model("Utilisateurs", Utilisateur);

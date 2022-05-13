@@ -60,6 +60,41 @@ module.exports.CreerCompteUser = async (req, res) => {
 		})
 		.catch((error) => res.status(500).json({ error }));
 };
+module.exports.CreerCompteUser2 = async (req, res) => {
+	console.log("on affiche le req  ", req.body);
+	const id_User = CodifieId();
+	const { UserName, email, mdp, NumeroTel } = req.body;
+	let Compte = {
+		Valeur: "0",
+		Transactions: [],
+	};
+	let role = {
+		role: "Client",
+	};
+	bcrypt
+		.hash(mdp, 10)
+		.then((hash) => {
+			console.log("le mdp: ", hash);
+			const user = new Utilisateur({
+				id_User,
+				UserName,
+				ProfilePic:[],
+				email,
+				mdp: hash,
+				NumeroTel,
+				Compte,
+				role,
+				Vehicules: [],
+				Factures: [],
+				Reservations: [],
+			});
+			user
+				.save()
+				.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+				.catch((error) => res.status(400).json({ error }));
+		})
+		.catch((error) => res.status(500).json({ error }));
+};
 module.exports.CreerCompteAdminEnt = async (req, res) => {
 	console.log("on affiche le req  ", req.body);
 	console.log("on affiche le req  ", req.files);
@@ -108,6 +143,47 @@ module.exports.CreerCompteAdminEnt = async (req, res) => {
 		})
 		.catch((error) => res.status(500).json({ error }));
 };
+module.exports.CreerCompteAdminEnt2 = async (req, res) => {
+	console.log("on affiche le req  ", req.body);
+	const id_User = CodifieId();
+	const { UserName, email, mdp, NumeroTel, Entreprise, Position, Entrepise } =
+		req.body;
+	let Compte = {
+		Valeur: "0",
+		Transactions: [],
+	};
+	let role = {
+		role: "Admin Entreprise",
+		Entreprise: {
+			Entreprise,
+			Position,
+			Entrepise,
+		},
+	};
+	bcrypt
+		.hash(mdp, 10)
+		.then((hash) => {
+			console.log("le mdp: ", hash);
+			const user = new Utilisateur({
+				id_User,
+				UserName,
+				ProfilePic:[],
+				email,
+				mdp: hash,
+				NumeroTel,
+				Compte,
+				role,
+				Vehicules: [],
+				Factures: [],
+				Reservations: [],
+			});
+			user
+				.save()
+				.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+				.catch((error) => res.status(400).json({ error }));
+		})
+		.catch((error) => res.status(500).json({ error }));
+};
 module.exports.CreerCompteAdminNaf = async (req, res) => {
 	console.log("on affiche le req  ", req.body);
 	console.log("on affiche le req  ", req.files);
@@ -140,6 +216,47 @@ module.exports.CreerCompteAdminNaf = async (req, res) => {
 				id_User,
 				UserName,
 				ProfilePic: Links,
+				email,
+				mdp: hash,
+				NumeroTel,
+				Compte,
+				role,
+				Vehicules: [],
+				Factures: [],
+				Reservations: [],
+			});
+			user
+				.save()
+				.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+				.catch((error) => res.status(400).json({ error }));
+		})
+		.catch((error) => res.status(500).json({ error }));
+};
+module.exports.CreerCompteAdminNaf2 = async (req, res) => {
+	console.log("on affiche le req  ", req.body);
+	const id_User = CodifieId();
+	const { UserName, email, mdp, NumeroTel, Entrepise, Position, Entrep } =
+		req.body;
+	let Compte = {
+		Valeur: "0",
+		Transactions: [],
+	};
+	let role = {
+		role: "Admin Naftal",
+		Entreprise: {
+			Entrepise,
+			Position,
+			Entrep,
+		},
+	};
+	bcrypt
+		.hash(mdp, 10)
+		.then((hash) => {
+			console.log("le mdp: ", hash);
+			const user = new Utilisateur({
+				id_User,
+				UserName,
+				ProfilePic:[],
 				email,
 				mdp: hash,
 				NumeroTel,

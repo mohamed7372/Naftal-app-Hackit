@@ -5,6 +5,8 @@ const Factures = require("../Models/Factures");
 const Reservation = require("../Models/Utilisateur");
 const Station = require("../Models/Station");
 const Vehicule = require("../Models/Vehicule");
+const blockchain = require("./BlockChain");
+var block = [blockchain.getGenesisBlock()];
 //*************************************************** */
 const CodifieCode_Facture = () => {
 	return ["Fac", Math.floor(Math.random() * 10000)].join("");
@@ -38,8 +40,10 @@ module.exports.CreerFacture = async (req, res) => {
 						const IDD = fact.id;
 						console.log("hello : ", IdUser, " ----------------");
 						const user = await Utilisateur.findById(IdUser).exec();
+						const Points = user.Points;
 						console.log("docs apres facture: ", IDD);
-
+						var obj = blockchain.getBlock(block,Points);
+						console.log("hoy  ",obj);
 						console.log("zone a risque : ", IDD);
 						try {
 							var Tr = {
@@ -51,7 +55,7 @@ module.exports.CreerFacture = async (req, res) => {
 								$inc: { "Compte.Valeur": -ValPaie },
 							}).exec();
 							Utilisateur.findByIdAndUpdate(IdUser, {
-								$addToSet: { "Factures": IDD },
+								$addToSet: { Factures: IDD },
 							}).exec();
 							Utilisateur.findByIdAndUpdate(
 								IdUser,
@@ -90,6 +94,23 @@ module.exports.CreerFacture = async (req, res) => {
 														}
 													)
 														.then(() => {
+															console.log("this work");
+															let Data={
+																IdUser,
+																Points: obj+20,  
+															};
+															console.log("this work0");
+															var newBlock = blockchain.generateNextBlock(Data,block);
+															console.log("this work1");
+															block=blockchain.addBlock(newBlock,block);
+															console.log("this work2");
+															console.log(
+																"block ajouté : " + JSON.stringify(newBlock)
+															);
+															console.log("la blockchain done ",block);
+															Utilisateur.findByIdAndUpdate(IdUser, {
+																$set: { Points:newBlock.hash },
+															}).exec();
 															console.log("pas derreur");
 															return res.status(200).json({
 																message:

@@ -43,9 +43,15 @@ const upload = multer({
 //
 router.post("/CreerCompteUser",upload.array('img', 1),Controlleur.CreerCompteUser);
 //
+router.post("/CreerCompteUser2",Controlleur.CreerCompteUser2);
+//
 router.post("/CreerCompteAdminEnt",upload.array('img', 1),Controlleur.CreerCompteAdminEnt);
 //
+router.post("/CreerCompteAdminEnt2",Controlleur.CreerCompteAdminEnt2);
+//
 router.post("/CreerCompteAdminNaf",upload.array('img', 1),Controlleur.CreerCompteAdminNaf);
+//
+router.post("/CreerCompteAdminNaf2",Controlleur.CreerCompteAdminNaf2);
 //
 router.post("/SeConnecter",Controlleur.SeConnecter);
 //
