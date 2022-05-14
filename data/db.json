@@ -1,0 +1,99 @@
+{
+  "stations": [
+    {
+      "id": "627e00b7649cdfb3c4827a88",
+      "name": "Gretchen Dawson",
+      "address": "Poplar Avenue, Hondah",
+      "stock": {
+        "essence": {
+          "capacite": 2000,
+          "quantity": 1000
+        },
+        "gazoil": {
+          "capacite": 2000,
+          "quantity": 1000
+        },
+        "gaz": {
+          "capacite": 2000,
+          "quantity": 1000
+        }
+      },
+      "nbrPomps": 23,
+      "fileAtttentEssence": "30",
+      "fileAtttentGazoil": "20",
+      "fileAtttentGaz": "10",
+      "Factures": "15"
+    },
+    {
+      "id": "627e00b7daa38541522c510c",
+      "name": "Gallagher Rodriquez",
+      "address": "Herkimer Place, Kapowsin",
+      "stock": {
+        "essence": {
+          "capacite": 2000,
+          "quantity": 1000
+        },
+        "gazoil": {
+          "capacite": 2000,
+          "quantity": 1000
+        },
+        "gaz": {
+          "capacite": 2000,
+          "quantity": 1000
+        }
+      },
+      "nbrPomps": 23,
+      "fileAtttentEssence": "30",
+      "fileAtttentGazoil": "20",
+      "fileAtttentGaz": "10",
+      "Factures": "15"
+    },
+    {
+      "id": "627e00b75141405cade7f6dd",
+      "name": "Erickson Tate",
+      "address": "Billings Place, Loomis",
+      "stock": {
+        "essence": {
+          "capacite": 2000,
+          "quantity": 1000
+        },
+        "gazoil": {
+          "capacite": 2000,
+          "quantity": 1000
+        },
+        "gaz": {
+          "capacite": 2000,
+          "quantity": 1000
+        }
+      },
+      "nbrPomps": 23,
+      "fileAtttentEssence": "30",
+      "fileAtttentGazoil": "20",
+      "fileAtttentGaz": "10",
+      "Factures": "15"
+    },
+    {
+      "id": "sio8y",
+      "name": "new station",
+      "address": "alger",
+      "stock": {
+        "essence": {
+          "quantity": 0
+        },
+        "gazoil": {
+          "capacite": "3000",
+          "quantity": 0
+        },
+        "gaz": {
+          "capacite": "30000",
+          "quantity": 0
+        }
+      },
+      "nbrPomps": 93,
+      "fileAtttentEssence": "0",
+      "fileAtttentGazoil": "0",
+      "fileAtttentGaz": "0",
+      "Factures": "0"
+    }
+  ]
+}

@@ -1,38 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  @apply m-0 p-0 box-border;
+}
 .App {
-  text-align: center;
+  @apply flex w-full;
+}
+.stationDetails .side-bar,
+.side-bar {
+  @apply flex flex-col items-center w-[15%] bg-black opacity-90 h-[100vh];
+}
+.side-bar svg {
+  @apply flex items-center flex-row justify-center mt-4;
+}
+.li-container {
+  @apply flex flex-col items-center justify-center w-[20vh] mt-5 text-gray-100 hover:bg-gray-700 hover:bg-opacity-25 cursor-pointer;
+}
+.stations {
+  @apply flex flex-col items-center relative;
+}
+.nav-bar {
+  @apply flex items-center justify-between px-6 py-4 bg-white border-b-4 border-indigo-600 w-full;
+}
+.nav-bar h3 {
+  @apply mx-2 text-2xl font-semibold text-gray-700;
+}
+table {
+  @apply m-4 border rounded-lg text-center w-[90%] border-collapse;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+table th {
+  @apply w-60 py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+table tr {
+  @apply hover:bg-gray-200 cursor-pointer;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+table td {
+  @apply py-4 px-6 border-b text-gray-700;
 }
-
-.App-link {
-  color: #61dafb;
+.carbs {
+  @apply flex flex-row text-sm w-full;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.station-handlers {
+  @apply text-white w-32 h-10 flex justify-center items-center bg-indigo-600 border-0 rounded-md;
+}
+.create-label {
+  @apply block text-gray-700 text-sm font-bold mb-2;
+}
+.create-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-inherit;
+}
+.stationDetails {
+  @apply relative w-[90vw] flex flex-col items-center justify-center;
+}
+.stationInfos h3 {
+  @apply text-2xl my-4 relative w-[50vw];
+}
+.description-name {
+  @apply my-6;
+}
+.description-name h4 {
+  @apply text-xl my-2 border-b-2;
+}
+.description-name h2 {
+  @apply text-sm text-gray-400;
+}
+.stock-details {
+  @apply flex flex-row justify-between my-3;
+}
+.btns {
+  @apply my-2 flex flex-row justify-around;
+}
+.btns button {
+  @apply py-2 px-6 bg-indigo-600 border-0 rounded-md text-white;
 }
