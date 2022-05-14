@@ -3,10 +3,14 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:naftal/Screens/Cars.dart';
+import 'package:naftal/Screens/History.dart';
 import 'package:naftal/Screens/HomePage.dart';
 import 'package:naftal/Screens/reserve.dart';
 
 import 'package:typicons_flutter/typicons_flutter.dart';
+
+import 'Profile.dart';
 
 
 
@@ -22,10 +26,10 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
   HomePage(),
-  Reserve(),
-  HomePage(),
-  HomePage(),
-  HomePage(),
+  Reserve(id:'1'),
+  History(),
+  Cars(),
+  Profile(),
 
 
 
@@ -57,7 +61,8 @@ class _MainPageState extends State<MainPage> {
 
       color:  const Color(0xffF2F2F2),
       child: Scaffold(
-        backgroundColor:  const Color(0xffF2F2F2),
+
+       // backgroundColor:  const Color(0xffF2F2F2),
         key: _scaffoldKey,
         body: _pages[_selectedIndex],
         bottomNavigationBar: Container(
@@ -83,12 +88,12 @@ class _MainPageState extends State<MainPage> {
               child: GNav(
                 backgroundColor: const Color(0xffF2F2F2),
                 curve: Curves.easeOutExpo,
-                rippleColor: Colors.grey,
-                hoverColor: Colors.grey,
+               // rippleColor: Colors.grey,
+               // hoverColor: Colors.grey,
                 haptic: true,
                 tabBorderRadius: 20,
                 gap: 5,
-                activeColor: Colors.red,
+                activeColor: Colors.black,
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
                 tabBackgroundColor:  Colors.white,
@@ -100,13 +105,13 @@ class _MainPageState extends State<MainPage> {
                     iconColor: Colors.black,
                     iconSize: _selectedIndex != 0 ? 28 : 25,
                     icon: _selectedIndex == 0
-                        ?  Icons.charging_station
-                        : Icons.charging_station,
+                        ?  Icons.oil_barrel
+                        : Icons.oil_barrel,
                     text: '',
 
                   ),
                   const GButton(
-                      icon:  Icons.surround_sound,
+                      icon:  Icons.speaker_phone,
                       text: '',
                       iconColor: Colors.black
                   ),
@@ -114,9 +119,9 @@ class _MainPageState extends State<MainPage> {
                   GButton(
                     iconColor: Colors.black,
                     iconSize: 29,
-                    icon: _selectedIndex == 3
-                        ? Icons.car_repair
-                        : Icons.car_repair_outlined,
+                    icon: _selectedIndex == 2
+                        ? Icons.car_crash_sharp
+                        : Icons.car_crash_sharp,
                     text: '',
                   ),
                   GButton(
@@ -130,7 +135,7 @@ class _MainPageState extends State<MainPage> {
                   GButton(
                     iconColor: Colors.black,
                     iconSize: 29,
-                    icon: _selectedIndex == 3
+                    icon: _selectedIndex == 4
                         ? Icons.supervised_user_circle
                         : Icons.supervised_user_circle,
                     text: '',

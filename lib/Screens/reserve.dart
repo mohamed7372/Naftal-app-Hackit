@@ -1,29 +1,61 @@
 
 import 'package:flutter/material.dart';
-import 'package:naftal/Screens/HomePage.dart';
 import 'package:naftal/Screens/ValdRes.dart';
-
 import '../Payment.dart';
+import '../Classes/User.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Reserve extends StatefulWidget {
-  const Reserve({Key? key}) : super(key: key);
+  final String id;
+   Reserve({Key? key, required this.id}) : super(key: key);
 
   @override
   _ReserveState createState() => _ReserveState();
 }
 
 class _ReserveState extends State<Reserve> {
+  Reserver (id,quantite,Type,station,pos) async{
+    var response=await http.post(
+        Uri.parse("https://hackit-naftal.herokuapp.com/Utilisateur/Reservation/CreerReservation?fbclid=IwAR13NLaPfLE9bbQsqZsnreqQNBxlLCfg1WIdPYi-uiMffBvhOL2TDL1DSTs"),
+        body:{
+          "id_User":id,
+          "Quantite":quantite,
+          "Type":Type,
+          "Station":station,
+          "Position":pos
+        }
+
+    );
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      return User.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album.');
+    }
+
+    print(response.toString());
+
+  }
+
+  TextEditingController adr=TextEditingController();
+  TextEditingController dinar=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:SingleChildScrollView(
+        backgroundColor: Colors.white,
+
+        body:SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20,),
 
-            Image.network("https://logosave.com/images/large/1/Naftal-Algerie-logo.gif"),
+            Image.network("https://www.b2b-algeria.net/file/2020/08/NAFTAL.jpg"),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -39,31 +71,29 @@ class _ReserveState extends State<Reserve> {
                   children:  <Widget> [
                     Padding(
 
-                      padding:  EdgeInsets.only(left: 20.0,right: 20,top: 20,bottom: 10),
+                      padding:  const EdgeInsets.only(left: 20.0,right: 20,top: 20,bottom: 10),
                       child:  Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           color: Colors.white,
                         ),
-                        child: const TextField(
-
-                          decoration: InputDecoration(
+                        child:  TextField(
+                             controller: adr,
+                          decoration:const InputDecoration(
                               border: OutlineInputBorder(),
-
-
                               labelText: 'Your location ',
                              // hintText: 'enter your name'
                           ),
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20.0,right: 20),
+                     Padding(
+                      padding: const EdgeInsets.only(left: 20.0,right: 20),
                       child: TextField(
-                       // controller: this._emailController,
-                        decoration:  InputDecoration(
-                            hintText: "Litre",
-                            labelText: "Litre",
+                        controller: dinar,
+                        decoration: const InputDecoration(
+                            hintText: "Dinar",
+                            labelText: "Dza",
                             labelStyle:  TextStyle(
                                 color: Color(0xFF424242)
                             )
@@ -71,23 +101,16 @@ class _ReserveState extends State<Reserve> {
 
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20.0,right: 20),
-                      child: TextField(
-                        // controller: this._emailController,
-                        decoration:  InputDecoration(
-                            hintText: "Litre",
-                            labelText: "Litre",
-                            labelStyle:  TextStyle(
-                                color: Color(0xFF424242)
-                            )
-                        ),
+                     const Padding(
+                      padding: EdgeInsets.only(left: 20.0,right: 20,top: 10),
+                      child: Text(
+                         "40 Dza Litre"
+                            ),
 
-                      ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 30.0,left: 20,right: 20,top: 5),
-                      child: const Text("*(+30%) adds for tips"),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 30.0,left: 20,right: 20,top: 5),
+                      child: Text("(+30%) adds for tips"),
                     )
                   ],
                 ) ,
@@ -114,12 +137,12 @@ class _ReserveState extends State<Reserve> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                const Padding(
+                                  padding: EdgeInsets.all(10.0),
                                   child: Text("Payment Methode",style:TextStyle(fontSize: 20),),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                const Padding(
+                                  padding: EdgeInsets.all(10.0),
                                   child: Divider(color: Colors.black,height: 1,),
                                 ),
                                 Container(
@@ -140,15 +163,17 @@ class _ReserveState extends State<Reserve> {
                                             ),
                                             child:  ListTile(
                                               onTap: (){
+
+                                                Reserver(widget.id, dinar.text, Type, 'el harach', adr.text);
                                                 Navigator.push(
                                                   context,
-                                                  MaterialPageRoute(builder: (context) => ValidationResrv()),
+                                                  MaterialPageRoute(builder: (context) => const ValidationResrv()),
                                                 );
 
                                               },
 
                                               title: Text(pay[index].Name),
-                                              leading:  Icon(pay[index].ic),
+                                              leading:  Image.network(pay[index].ic),
 
                                             ));
                                           }
@@ -171,7 +196,7 @@ class _ReserveState extends State<Reserve> {
                                           onTap: () {
                                             Navigator.push(
                                               context,
-                                              MaterialPageRoute(builder: (context) => ValidationResrv()),
+                                              MaterialPageRoute(builder: (context) => const ValidationResrv()),
                                             );
                                           },
                                           child: const Text("Go to Station",style: TextStyle(color:Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),

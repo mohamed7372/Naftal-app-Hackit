@@ -51,6 +51,10 @@ dev_dependencies:
   google_fonts:
   flutter_icons: ^1.1.0
   flat_icons_flutter:
+  dio:
+  google_maps_flutter:
+  flutter_polyline_points:
+  http:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

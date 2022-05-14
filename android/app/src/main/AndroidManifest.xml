@@ -4,6 +4,8 @@
         android:label="naftal"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyB3UaYHGG5HuckPhB4bTq60QF9zyvLNjXo"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

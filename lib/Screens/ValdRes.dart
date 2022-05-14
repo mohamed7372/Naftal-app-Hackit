@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naftal/Screens/MainPage.dart';
 import 'package:naftal/Screens/reserve.dart';
 
 class ValidationResrv extends StatelessWidget {
@@ -10,7 +11,7 @@ class ValidationResrv extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 100,),
-          Image.network("https://logosave.com/images/large/1/Naftal-Algerie-logo.gif"),
+          Image.network("https://www.b2b-algeria.net/file/2020/08/NAFTAL.jpg"),
           Text('Validation Screen'),
           Spacer(),
           Padding(
@@ -28,7 +29,7 @@ class ValidationResrv extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Reserve()),
+                        MaterialPageRoute(builder: (context) => MainPage()),
                       );
                     },
                     child: const Text("Go Back",style: TextStyle(color:Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
