@@ -92,7 +92,7 @@ class SignIn extends StatelessWidget {
 
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>MainPage() /* SignNumber(username:username.text,email:email.text)*/),
+                              MaterialPageRoute(builder: (context) => SignNumber(username:username.text,email:email.text)),
                             );
 
                             ScaffoldMessenger.of(context).showSnackBar(
