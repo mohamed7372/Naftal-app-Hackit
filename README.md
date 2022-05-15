@@ -18,3 +18,6 @@ dashboard entreprise
 
 ### branch ai-model
 server in python when run IA model 
+
+### technologie
+flutter, react, node, mongodb, figma, ia, jupyter, python
