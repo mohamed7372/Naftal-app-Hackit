@@ -1,12 +1,12 @@
 # Naftal-app-Hackit
 
-### branch backend
+### branch master
 you can find all code about backend of our app mobile and dashboard admin/company
 
-### flutter
+### branch naftal-mobile
 our app mobile
 
-### branch dashboard
+### branch naftal-dashboard
 dahsboard admin naftal
 
 ### branch dashboard-entreprise
